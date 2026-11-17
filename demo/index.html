@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="ClaraSR – Interaktive Konzeptdemo zum Abgleich von Retouren und Lieferantengutschriften sowie zur Nachverfolgung der Klärung anhand fiktiver Beispieldaten."
+  >
+
+  <title>Interaktive Demo | ClaraSR</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="cases-layout.css">
+
+  <!-- Datenimport und Abgleich -->
+  <script src="../csv-import.js" defer></script>
+  <script src="../matching-engine.js" defer></script>
+  <script src="../creditloop-currency-engine.js" defer></script>
+  <script src="../settlement-engine.js" defer></script>
+
+  <!-- Finanzielle Abschlussprüfung -->
+  <script src="../creditloop-closure-engine.js" defer></script>
+  <script src="../creditloop-case-decisions.js" defer></script>
+
+  <!-- PDF-Bibliothek -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"
+    defer
+  ></script>
+
+  <!-- Demo-Anwendung -->
+  <script src="app.js" defer></script>
+  <script src="documents.js" defer></script>
+  <script src="fx-demo.js" defer></script>
+  <script src="i18n.js" defer></script>
+
+  <!-- Layout-Ergänzungen -->
+  <script src="cases-layout.js" defer></script>
+  <script src="workflow-layout.js" defer></script>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#demo-top">
+  Clara<span>SR.</span>
+</a>
+
+      <span class="topbar-label">
+        INTERAKTIVE PRODUKTDEMO
+      </span>
+
+      <div class="topbar-actions">
+        <a class="back-link" href="#demo-top">
+          ← Zur Website
+        </a>
+
+        <label class="language-picker">
+          <span class="language-picker-label">SPRACHE</span>
+
+          <select
+            id="demo-language-select"
+            aria-label="Sprache auswählen"
+          >
+            <option value="de">DE</option>
+            <option value="en">EN</option>
+            <option value="it">IT</option>
+            <option value="fr">FR</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="demo-top">
+
+    <!-- ÜBERSICHT -->
+    <section class="intro" data-demo-view="overview">
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        PRODUKTDEMONSTRATION
+      </div>
+
+      <h1>Alles im <span>Blick.</span></h1>
+
+      <p class="intro-text">
+        Erleben Sie anhand fiktiver Geschäftsvorgänge, wie ClaraSR
+        genehmigte Retouren mit erfassten Lieferantengutschriften
+        vergleicht, mögliche Abweichungen sichtbar macht und die
+        weitere Klärung unterstützt.
+      </p>
+
+      <div class="demo-notice">
+        <strong>Interaktive Konzeptdemo</strong>
+        <span>
+          Ausschließlich erfundene Daten. Keine echten Unternehmen,
+          Kundenresultate oder bestätigten Rückforderungen.
+          Es werden keine eigenen Dateien hochgeladen.
+        </span>
+      </div>
+    </section>
+
+    <!-- NAVIGATION -->
+    <nav class="demo-navigation" aria-label="Demo-Navigation">
+      <a
+        href="#demo-top"
+        class="demo-nav-link"
+        data-view="overview"
+      >
+        Übersicht
+      </a>
+
+      <a
+        href="#workspace-title"
+        class="demo-nav-link"
+        data-view="reconcile"
+      >
+        Belege &amp; Abgleich
+      </a>
+
+      <a
+        href="#results-section"
+        class="demo-nav-link"
+        data-view="cases"
+      >
+        Fälle
+      </a>
+
+      <a
+        href="#closure-page"
+        class="demo-nav-link"
+        data-view="closure"
+      >
+        Abschlussprüfung
+      </a>
+
+      <a
+        href="#settlement-demo"
+        class="demo-nav-link"
+        data-view="settlement"
+      >
+        Gutschriften &amp; Ausgleich
+      </a>
+
+      <a
+        href="#planned-extensions"
+        class="demo-nav-link cl-roadmap-nav"
+        data-view="roadmap"
+        data-roadmap-text="navigation"
+      >
+        Geplante Erweiterungen
+      </a>
+    </nav>
+
+    <section class="overview-board" data-demo-view="overview">
+      <div class="overview-grid">
+
+        <!-- SO FUNKTIONIERT DIE DEMO -->
+        <article
+          class="cl-demo-guide"
+          aria-labelledby="cl-demo-guide-title"
+        >
+          <header class="cl-demo-guide-heading">
+            <div
+              class="section-label"
+              data-guide-text="eyebrow"
+            >
+              SO FUNKTIONIERT DIE DEMO
+            </div>
+
+            <h2
+              id="cl-demo-guide-title"
+              data-guide-text="title"
+            >
+              Lieferantenreklamationen und Gutschriften
+              bis zur Klärung verfolgen
+            </h2>
+
+            <p data-guide-text="intro">
+              Erkunden Sie anhand fiktiver Geschäftsvorgänge,
+              wie ClaraSR genehmigte Retouren mit
+              Lieferantengutschriften vergleicht, mögliche
+              Abweichungen sichtbar macht und die weitere
+              Prüfung unterstützt.
+            </p>
+          </header>
+
+          <ol class="cl-demo-guide-steps">
+            <li class="cl-demo-guide-step">
+              <span
+                class="cl-demo-guide-number"
+                aria-hidden="true"
+              >1</span>
+
+              <div>
+                <h3 data-guide-text="step1Title">
+                  Beispieldaten vergleichen
+                </h3>
+
+                <p data-guide-text="step1Text">
+                  Öffnen Sie „Belege &amp; Abgleich“. Dort sehen Sie
+                  die hinterlegten Rechnungen, Retouren
+                  und Gutschriften. Über „Abgleich starten“
+                  können Sie die Beispieldaten nochmals
+                  vergleichen lassen.
+                </p>
+              </div>
+            </li>
+
+            <li class="cl-demo-guide-step">
+              <span
+                class="cl-demo-guide-number"
+                aria-hidden="true"
+              >2</span>
+
+              <div>
+                <h3 data-guide-text="step2Title">
+                  Einen Vorgang untersuchen
+                </h3>
+
+                <p data-guide-text="step2Text">
+                  Unter „Fälle“ wählen Sie einen Vorgang aus.
+                  Prüfen Sie die festgestellte Abweichung und
+                  öffnen Sie die zugehörigen Musterbelege.
+                  Anschließend können Sie einen Bearbeitungsstand
+                  setzen und eine interne Notiz speichern.
+                </p>
+              </div>
+            </li>
+
+            <li class="cl-demo-guide-step">
+              <span
+                class="cl-demo-guide-number"
+                aria-hidden="true"
+              >3</span>
+
+              <div>
+                <h3 data-guide-text="step3Title">
+                  Ergebnis und Nachweise dokumentieren
+                </h3>
+
+                <p data-guide-text="step3Text">
+                  In der „Abschlussprüfung“ erfassen Sie ein
+                  mögliches Abschlussergebnis und die
+                  dazugehörigen Nachweise. Die Demo zeigt,
+                  welche Angaben vorliegen und welche
+                  Voraussetzungen für eine Freigabe noch fehlen.
+                </p>
+              </div>
+            </li>
+
+            <li class="cl-demo-guide-step">
+              <span
+                class="cl-demo-guide-number"
+                aria-hidden="true"
+              >4</span>
+
+              <div>
+                <h3 data-guide-text="step4Title">
+                  Die Zuordnung einer Gutschrift nachvollziehen
+                </h3>
+
+                <p data-guide-text="step4Text">
+                  Unter „Gutschriften &amp; Ausgleich“ sehen Sie,
+                  welche ausgestellten Gutschriften den
+                  vorhandenen Buchungsdaten zugeordnet wurden
+                  und welcher Betrag noch nicht zugeordnet ist.
+                  Über die Gutschriftnummer öffnen Sie den
+                  zugehörigen Musterbeleg.
+                </p>
+
+                <p
+                  class="cl-demo-guide-fx"
+                  data-guide-text="fxText"
+                >
+                  Die zusätzliche Wechselkursprüfung zeigt
+                  anhand fiktiver Beispielkurse, wie sich
+                  unterschiedliche Bewertungszeitpunkte auf
+                  den CHF-Gegenwert einer Gutschrift
+                  auswirken können.
+                </p>
+              </div>
+            </li>
+          </ol>
+
+          <!-- DURCHGÄNGIGES BEISPIEL -->
+          <section
+            class="cl-demo-guide-example"
+            aria-labelledby="cl-demo-guide-example-title"
+          >
+            <h3
+              id="cl-demo-guide-example-title"
+              data-guide-text="exampleTitle"
+            >
+              Ein Beispiel zum Ausprobieren
+            </h3>
+
+            <p data-guide-text="exampleText">
+              Für INV-101 ist eine Retoure über CHF 2’400.00
+              genehmigt. Im Beispieldatensatz wurde keine
+              passende Gutschrift gefunden.
+            </p>
+
+            <p data-guide-text="exampleAction">
+              Öffnen Sie den Vorgang unter „Fälle“, sehen Sie
+              sich Rechnung und Retourenbeleg an und
+              dokumentieren Sie einen möglichen nächsten
+              Prüfschritt – beispielsweise die Prüfung
+              eines Lieferantenkontoauszugs.
+            </p>
+
+            <div class="cl-demo-guide-important">
+              <strong data-guide-text="importantTitle">
+                Wichtig
+              </strong>
+
+              <p data-guide-text="importantText">
+                Eine fehlende Gutschrift im Datensatz beweist
+                nicht, dass außerhalb dieser Daten keine
+                Gutschrift existiert. Auch eine Buchungszuordnung
+                allein bestätigt noch keine tatsächliche
+                Rückzahlung oder Verrechnung.
+              </p>
+            </div>
+          </section>
+
+          <aside class="cl-demo-guide-roadmap">
+            <strong data-guide-roadmap="title">
+              Was ist als Nächstes geplant?
+            </strong>
+
+            <p>
+              <a
+                href="#planned-extensions"
+                data-guide-roadmap="link"
+              >
+                Geplante Erweiterungen →
+              </a>
+
+              <span data-guide-roadmap="text">
+                Entdecken Sie, welche zusätzlichen Anwendungsfälle
+                wir künftig unterstützen möchten.
+              </span>
+            </p>
+          </aside>
+
+          <!-- DEMO-HINWEIS UND START -->
+          <footer class="cl-demo-guide-footer">
+            <div class="cl-demo-guide-note">
+              <strong data-guide-text="noteTitle">
+                Hinweis zur Demo
+              </strong>
+
+              <p data-guide-text="noteText">
+                Alle Geschäftsvorgänge und Belege sind fiktiv.
+                Es werden keine echten Kundendokumente
+                hochgeladen. Ihre Änderungen werden lokal in
+                diesem Browser gespeichert, sofern die
+                Browsereinstellungen dies zulassen. Sie verändern
+                keine echten Geschäftsdaten und werden
+                nicht an Lieferanten gesendet.
+              </p>
+            </div>
+
+            <a
+              href="#workspace-title"
+              class="cl-demo-guide-start"
+              data-guide-start
+              data-guide-text="startButton"
+            >
+              Zu Belege &amp; Abgleich →
+            </a>
+          </footer>
+        </article>
+
+        <!-- ERGÄNZENDE KARTEN -->
+        <div class="overview-card">
+          <div class="section-label">
+            FUNKTIONSUMFANG DER DEMO
+          </div>
+
+          <h3>Was hier gezeigt wird</h3>
+
+          <ul class="overview-list">
+            <li>
+              Genehmigte Retouren vs. erfasste Gutschriften
+            </li>
+            <li>
+              Potenzielle Differenzen als prüfbare Fälle
+            </li>
+            <li>
+              Dokumentreferenzen und Bearbeitungsstatus
+            </li>
+            <li>
+              Zuordnung ausgestellter Gutschriften zu Buchungen
+            </li>
+          </ul>
+        </div>
+
+        <div class="overview-card">
+          <div class="section-label">BEISPIELSZENARIEN</div>
+
+          <h3>Ausgewähltes Demo-Unternehmen</h3>
+
+          <div class="overview-company">
+            <strong data-demo-company-name>
+              Alpine Parts AG
+            </strong>
+
+            <span>Maschinenbau &amp; Ersatzteile</span>
+          </div>
+
+          <p class="overview-footnote">
+            Alle Daten sind frei erfunden und dienen nur
+            zur Veranschaulichung der Produktlogik.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GEPLANTE ERWEITERUNGEN -->
+    <section
+      id="planned-extensions"
+      class="cl-roadmap"
+      data-demo-view="roadmap"
+      aria-labelledby="cl-roadmap-title"
+    >
+      <header class="cl-roadmap-heading">
+        <div
+          class="section-label"
+          data-roadmap-text="eyebrow"
+        >
+          PRODUKTAUSBLICK
+        </div>
+
+        <h2
+          id="cl-roadmap-title"
+          data-roadmap-text="title"
+        >
+          Geplante Erweiterungen
+        </h2>
+
+        <p data-roadmap-text="intro">
+          Hier zeigen wir, wie ClaraSR künftig erweitert werden
+          könnte. Die beschriebenen Funktionen sind noch nicht Teil
+          dieser Demo. Umfang und Umsetzung richten sich nach den
+          Rückmeldungen und Anforderungen potenzieller Kunden.
+        </p>
+      </header>
+
+      <article
+        class="cl-roadmap-card"
+        aria-labelledby="cl-roadmap-mobile-title"
+      >
+        <span
+          class="cl-roadmap-status"
+          data-roadmap-text="status"
+        >
+          Geplant · Noch nicht verfügbar
+        </span>
+
+        <h3
+          id="cl-roadmap-mobile-title"
+          data-roadmap-text="mobileTitle"
+        >
+          Wareneingang direkt mit dem Smartphone dokumentieren
+        </h3>
+
+        <p data-roadmap-text="mobileIntro">
+          Mitarbeitende sollen Abweichungen bereits bei der
+          Anlieferung erfassen können – direkt im Lager oder
+          am Wareneingang.
+        </p>
+
+        <ol class="cl-roadmap-steps">
+          <li>
+            <strong data-roadmap-text="step1Title">
+              Artikel und Lieferung zuordnen
+            </strong>
+
+            <p data-roadmap-text="step1Text">
+              Artikel per Barcode oder QR-Code erfassen und
+              der passenden Bestellung oder Lieferung zuordnen.
+            </p>
+          </li>
+
+          <li>
+            <strong data-roadmap-text="step2Title">
+              Abweichungen festhalten
+            </strong>
+
+            <p data-roadmap-text="step2Text">
+              Erwartete und erhaltene Mengen, Schäden oder
+              Qualitätsprobleme dokumentieren und Fotos hinzufügen.
+            </p>
+          </li>
+
+          <li>
+            <strong data-roadmap-text="step3Title">
+              Unterlagen im Vorgang bündeln
+            </strong>
+
+            <p data-roadmap-text="step3Text">
+              Die Angaben und Fotos sollen direkt dem zugehörigen
+              Vorgang zugeordnet und für die weitere Prüfung
+              bereitgestellt werden.
+            </p>
+          </li>
+
+          <li>
+            <strong data-roadmap-text="step4Title">
+              Klärung und Ausgleich verfolgen
+            </strong>
+
+            <p data-roadmap-text="step4Text">
+              Aus der dokumentierten Abweichung soll die weitere
+              Bearbeitung entstehen: Reklamation vorbereiten,
+              Lieferantenantworten nachverfolgen und Gutschrift
+              sowie Ausgleich prüfen.
+            </p>
+          </li>
+        </ol>
+
+        <div class="cl-roadmap-example">
+          <strong data-roadmap-text="exampleTitle">
+            Ein mögliches Beispiel
+          </strong>
+
+          <p data-roadmap-text="exampleText">
+            Von 100 bestellten Ersatzteilen kommen 95 an.
+            Ein Mitarbeiter dokumentiert die Fehlmenge und fügt
+            Fotos hinzu. Einkauf oder Buchhaltung können die
+            Unterlagen anschließend prüfen und die Klärung
+            mit dem Lieferanten weiterverfolgen.
+          </p>
+        </div>
+
+        <section
+          class="cl-roadmap-more"
+          aria-labelledby="cl-roadmap-more-title"
+        >
+          <h3
+            id="cl-roadmap-more-title"
+            data-roadmap-extra="title"
+          >
+            Weitere geplante Anwendungsfälle
+          </h3>
+
+          <p data-roadmap-extra="intro">
+            Auch diese Erweiterungen sind noch nicht verfügbar.
+            Welche wir umsetzen, priorisieren wir anhand des
+            tatsächlichen Kundenbedarfs.
+          </p>
+
+          <div class="cl-roadmap-more-grid">
+            <article>
+              <h4 data-roadmap-extra="perishableTitle">
+                Verderbliche Ware berücksichtigen
+              </h4>
+
+              <p data-roadmap-extra="perishableText">
+                Bei Blumen, Pflanzen und anderen verderblichen
+                Produkten sollen sich Qualitätsmängel,
+                Resthaltbarkeit und kurze Reklamationsfristen
+                gezielt erfassen und nachverfolgen lassen.
+              </p>
+            </article>
+
+            <article>
+              <h4 data-roadmap-extra="deliveriesTitle">
+                Komplexe Lieferungen nachvollziehen
+              </h4>
+
+              <p data-roadmap-extra="deliveriesText">
+                Teil- und Nachlieferungen sowie mehrere Rechnungen
+                oder Gutschriften sollen zu einem Vorgang
+                zusammengeführt werden. So bleibt erkennbar,
+                welche Mengen und Beträge noch offen sind.
+              </p>
+            </article>
+
+            <article>
+              <h4 data-roadmap-extra="pricesTitle">
+                Preisabweichungen erkennen
+              </h4>
+
+              <p data-roadmap-extra="pricesText">
+                Bestellte beziehungsweise vereinbarte Preise
+                sollen mit den Rechnungspositionen verglichen
+                werden, um mögliche Überberechnungen sichtbar
+                zu machen und ihre Prüfung zu unterstützen.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <p
+          class="cl-roadmap-note"
+          data-roadmap-text="note"
+        >
+          Vorgesehen ist zunächst eine für Smartphones optimierte
+          Weboberfläche. Ob eine separate App benötigt wird,
+          prüfen wir anhand des tatsächlichen Bedarfs.
+        </p>
+      </article>
+    </section>
+
+    <!-- ABGLEICH -->
+    <section
+      class="workspace"
+      aria-labelledby="workspace-title"
+      data-demo-view="reconcile"
+    >
+      <div class="workspace-heading">
+        <div>
+          <div class="section-label">
+            01 / ANGEMELDETES UNTERNEHMEN
+          </div>
+
+          <h2 id="workspace-title">Belege &amp; Abgleich</h2>
+
+          <p>
+            Prüfen Sie Rechnungen, Retouren und Gutschriften
+            Ihrer Lieferanten.
+          </p>
+        </div>
+
+        <span class="results-badge">DEMO-ERGEBNISSE</span>
+      </div>
+
+      <!-- ANGEMELDETES DEMO-UNTERNEHMEN -->
+      <div class="case-navigation-bar">
+        <div class="case-navigation-company">
+          <span class="case-navigation-label">
+            ANGEMELDETES UNTERNEHMEN
+          </span>
+
+          <div style="margin-top:8px;">
+            <strong
+              class="cl-company-name"
+              data-demo-company-name
+            >
+              Alpine Parts AG
+            </strong>
+          </div>
+
+          <p style="margin:6px 0 0; font-size:12px;">
+            Fiktives Demo-Unternehmen · Demo-Modus
+          </p>
+        </div>
+      </div>
+
+      <!-- LIEFERANTENAUSWAHL -->
+      <div class="case-navigation-bar">
+        <div class="case-navigation-company">
+          <label for="reconcile-supplier-select">
+            LIEFERANT AUSWÄHLEN
+          </label>
+
+          <select
+            id="reconcile-supplier-select"
+            class="demo-company-select"
+            data-supplier-select
+            aria-label="Lieferanten für den Abgleich auswählen"
+          >
+            <option value="all">Alle Lieferanten</option>
+
+            <option value="Meccanica Italia S.r.l.">
+              Meccanica Italia S.r.l.
+            </option>
+
+            <option value="Alpen Technik GmbH">
+              Alpen Technik GmbH
+            </option>
+
+            <option value="Swiss Precision AG">
+              Swiss Precision AG
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="data-area">
+        <div class="data-heading">
+          <div>
+            <div class="section-label">02 / QUELLDATEN</div>
+
+            <h3>Verfügbare Belege</h3>
+
+            <p>
+              Diese Tabellen zeigen die Daten, die
+              der Demo-Abgleich auswertet.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="data-tabs"
+          role="tablist"
+          aria-label="Dokumentarten"
+        >
+          <button
+            id="tab-invoices"
+            type="button"
+            class="tab active"
+            role="tab"
+            aria-selected="true"
+            data-tab="invoices"
+          >
+            Rechnungen <span id="invoice-count">0</span>
+          </button>
+
+          <button
+            id="tab-returns"
+            type="button"
+            class="tab"
+            role="tab"
+            aria-selected="false"
+            data-tab="returns"
+          >
+            Retouren <span id="return-count">0</span>
+          </button>
+
+          <button
+            id="tab-credits"
+            type="button"
+            class="tab"
+            role="tab"
+            aria-selected="false"
+            data-tab="credits"
+          >
+            Gutschriften <span id="credit-count">0</span>
+          </button>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead id="data-table-head"></thead>
+            <tbody id="data-table-body"></tbody>
+          </table>
+        </div>
+
+        <div class="data-footnote">
+          Alle Beträge und Geschäftsvorgänge sind frei erfunden.
+          Die Dokumente sind bewusst vereinfacht.
+        </div>
+      </div>
+
+      <div class="run-area">
+        <div>
+          <div class="section-label">
+            03 / AUTOMATISCHER ABGLEICH
+          </div>
+
+          <h3>Bereit für den Abgleich?</h3>
+
+          <p>
+            Vergleichen Sie die genehmigten Retouren mit den
+            erfassten Gutschriften.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          id="run-demo"
+          class="run-button"
+        >
+          <span>Abgleich starten</span>
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+
+      <p
+        id="demo-message"
+        class="demo-message"
+        role="status"
+        aria-live="polite"
+      >
+        Die Beispieldaten werden für den Abgleich vorbereitet.
+      </p>
+    </section>
+
+    <!-- FÄLLE -->
+    <section
+      id="results-section"
+      class="results-section"
+      data-demo-view="cases"
+      hidden
+    >
+      <a class="workspace-return" href="#demo-top">
+        ← Zur Übersicht
+      </a>
+
+      <div class="results-heading">
+        <div>
+          <div class="section-label">
+            03 / VORGANGSÜBERSICHT
+          </div>
+
+          <h2 id="results-company-title">Fälle</h2>
+
+          <p>
+            Die Ergebnisse werden durch den Demo-Abgleich berechnet.
+          </p>
+        </div>
+
+        <span class="results-badge">DEMO-ERGEBNISSE</span>
+      </div>
+
+      <!-- UNTERNEHMEN, LIEFERANT UND SCHNELLNAVIGATION -->
+      <div class="case-navigation-bar cl-cases-navigation-grid">
+        <div class="case-navigation-company cl-company-info">
+          <span class="case-navigation-label">
+            ANGEMELDETES UNTERNEHMEN
+          </span>
+
+          <strong
+            class="cl-company-name"
+            data-demo-company-name
+          >
+            Alpine Parts AG
+          </strong>
+
+          <p class="cl-company-description">
+            Fiktives Demo-Unternehmen · Demo-Modus
+          </p>
+        </div>
+
+        <div class="case-navigation-company cl-supplier-info">
+          <label for="cases-supplier-select">
+            LIEFERANT AUSWÄHLEN
+          </label>
+
+          <select
+            id="cases-supplier-select"
+            class="demo-company-select"
+            data-supplier-select
+            aria-label="Lieferanten für Fälle auswählen"
+          >
+            <option value="all">Alle Lieferanten</option>
+
+            <option value="Meccanica Italia S.r.l.">
+              Meccanica Italia S.r.l.
+            </option>
+
+            <option value="Alpen Technik GmbH">
+              Alpen Technik GmbH
+            </option>
+
+            <option value="Swiss Precision AG">
+              Swiss Precision AG
+            </option>
+          </select>
+        </div>
+
+        <div class="case-navigation-shortcuts cl-quick-info">
+          <span class="case-navigation-label">
+            SCHNELL ZU EINEM VORGANG
+          </span>
+
+          <div
+            id="case-quick-navigation"
+            class="case-quick-navigation"
+            aria-label="Vorgang auswählen"
+          ></div>
+        </div>
+      </div>
+
+      <div class="summary-grid">
+        <div class="summary-card summary-primary">
+          <span>Potenzielle Betragsdifferenz</span>
+          <strong id="summary-difference">–</strong>
+          <small>Keine bestätigte Forderung</small>
+        </div>
+
+        <div class="summary-card">
+          <span>Verglichene Vorgänge</span>
+          <strong id="summary-total">0</strong>
+          <small>Ergebnisse des Abgleichs</small>
+        </div>
+
+        <div class="summary-card">
+          <span>Auffällige Vorgänge</span>
+          <strong id="summary-issues">0</strong>
+          <small>Manuelle Prüfung erforderlich</small>
+        </div>
+      </div>
+
+      <div class="result-layout">
+
+        <!-- LINKS: VOLLSTÄNDIGE FALLAKTE -->
+        <div class="detail-panel">
+          <div class="detail-header">
+            <span class="section-label">FALLDETAILS</span>
+            <span class="detail-symbol">↗</span>
+          </div>
+
+          <div id="case-detail">
+            <p class="empty-detail">
+              Wählen Sie einen Vorgang aus der Liste aus.
+            </p>
+          </div>
+        </div>
+
+        <!-- RECHTS: FALLÜBERSICHT -->
+        <div class="cases-panel">
+          <h3>Erkannte Vorgänge</h3>
+
+          <p class="panel-intro">
+            Wählen Sie einen Vorgang aus, um die Erklärung
+            und seine Dokumentreferenzen anzusehen.
+          </p>
+
+          <div id="case-list" class="case-list"></div>
+        </div>
+
+      </div>
+
+      <div class="results-disclaimer">
+        <strong>Wichtig:</strong>
+        Eine Differenz in den importierten Beispieldaten ist
+        kein Nachweis für eine tatsächliche Forderung.
+        Gutschriftzuordnung, Verrechnung und Zahlungseingang
+        müssen gesondert geprüft werden.
+      </div>
+    </section>
+
+    <!-- ABSCHLUSSPRÜFUNG -->
+    <section
+      id="closure-page"
+      class="results-section closure-page"
+      data-demo-view="closure"
+    >
+      <div class="results-heading">
+        <div>
+          <div class="section-label">
+            04 / ABSCHLUSSPRÜFUNG
+          </div>
+
+          <h2>Abschlussprüfung</h2>
+
+          <p>
+            Prüfen Sie den ausgewählten Vorgang und
+            dokumentieren Sie das Abschlussergebnis.
+          </p>
+        </div>
+
+        <span class="results-badge">DEMO-ERGEBNISSE</span>
+      </div>
+
+      <div class="case-navigation-company cl-closure-selector">
+        <label for="closure-case-select">
+          Vorgang auswählen
+        </label>
+
+        <select
+          id="closure-case-select"
+          class="demo-company-select"
+        ></select>
+
+        <p id="closure-case-context"></p>
+      </div>
+
+      <div id="closure-content"></div>
+    </section>
+
+    <!-- GUTSCHRIFTEN UND AUSGLEICH -->
+    <section
+      id="settlement-demo"
+      class="results-section"
+      data-demo-view="settlement"
+      hidden
+    >
+      <a class="workspace-return" href="#demo-top">
+        ← Zur Übersicht
+      </a>
+
+      <div class="results-heading">
+        <div>
+          <div class="section-label">
+            06 / BUCHUNGS- UND VERRECHNUNGSPRÜFUNG
+          </div>
+
+          <h2 id="settlement-company-title">
+            Gutschriften &amp; Ausgleich
+          </h2>
+
+          <p>
+            Prüfen Sie, welche ausgestellten Lieferantengutschriften
+            bereits Buchungen zugeordnet werden konnten.
+          </p>
+        </div>
+
+        <span class="results-badge">DEMO-ERGEBNISSE</span>
+      </div>
+
+      <!-- ANGEMELDETES UNTERNEHMEN UND LIEFERANT -->
+      <div class="settlement-company-bar cl-settlement-navigation-grid">
+        <div class="case-navigation-company cl-company-info">
+          <span class="case-navigation-label">
+            ANGEMELDETES UNTERNEHMEN
+          </span>
+
+          <strong
+            class="cl-company-name"
+            data-demo-company-name
+          >
+            Alpine Parts AG
+          </strong>
+
+          <p class="cl-company-description">
+            Fiktives Demo-Unternehmen · Demo-Modus
+          </p>
+        </div>
+
+        <div class="case-navigation-company cl-supplier-info">
+          <label for="settlement-supplier-select">
+            LIEFERANT AUSWÄHLEN
+          </label>
+
+          <select
+            id="settlement-supplier-select"
+            class="demo-company-select"
+            data-supplier-select
+            aria-label="Lieferanten für Gutschriften auswählen"
+          >
+            <option value="all">Alle Lieferanten</option>
+
+            <option value="Meccanica Italia S.r.l.">
+              Meccanica Italia S.r.l.
+            </option>
+
+            <option value="Alpen Technik GmbH">
+              Alpen Technik GmbH
+            </option>
+
+            <option value="Swiss Precision AG">
+              Swiss Precision AG
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="settlement-panel">
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Gutschrift</th>
+                <th>Lieferant</th>
+                <th>Ausgestellter Betrag</th>
+                <th>Buchhalterisch zugeordnet</th>
+                <th>Noch nicht zugeordnet</th>
+                <th>Zuordnungsstatus</th>
+              </tr>
+            </thead>
+
+            <tbody id="demo-settlement-rows"></tbody>
+          </table>
+        </div>
+
+        <div
+          id="demo-settlement-details"
+          class="settlement-details"
+        ></div>
+      </div>
+
+      <div class="results-disclaimer">
+        <strong>Wichtiger Hinweis:</strong>
+        Buchungen werden hier anhand künstlicher
+        Beispieldaten zugeordnet. Weder Rückzahlungen
+        noch wirksame Verrechnungen wurden unabhängig
+        nachgewiesen.
+      </div>
+    </section>
+
+    <footer class="demo-footer">
+      <span>
+        ClaraSR — Lieferantenreklamationen und Gutschriftenabgleich
+      </span>
+
+      <span>
+        Prototyp · Fiktive Daten · Keine Kundenanwendung
+      </span>
+    </footer>
+
+  </main>
+</body>
+</html>

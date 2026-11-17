@@ -6,13 +6,14 @@
 
   <meta
     name="description"
-    content="ClaraSR – Interaktive Konzeptdemo zum Abgleich von Retouren und Lieferantengutschriften sowie zur Nachverfolgung der Klärung anhand fiktiver Beispieldaten."
+    content="ClaraSR – Interaktive Konzeptdemo zur Prüfung von Bestellungen, Wareneingängen und Rechnungen sowie zur Nachverfolgung von Reklamationen, Gutschriften und Ausgleich anhand fiktiver Beispieldaten."
   >
 
   <title>Interaktive Demo | ClaraSR</title>
 
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="cases-layout.css">
+  <link rel="stylesheet" href="inspection.css">
 
   <!-- Datenimport und Abgleich -->
   <script src="../csv-import.js" defer></script>
@@ -26,15 +27,23 @@
 
   <!-- PDF-Bibliothek -->
   <script
-    src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"
+    src="vendor/pdf-lib.min.js"
     defer
   ></script>
 
   <!-- Demo-Anwendung -->
   <script src="app.js" defer></script>
-  <script src="documents.js" defer></script>
+  <!-- Dokumentansicht wird durch inspection-ui.js bereitgestellt. -->
   <script src="fx-demo.js" defer></script>
   <script src="i18n.js" defer></script>
+
+  <script src="vendor/fontkit.umd.min.js" defer></script>
+  <script src="upstream-data.js" defer></script>
+  <script src="inspection-engine.js" defer></script>
+  <script src="inspection-i18n.js" defer></script>
+  <script src="inspection-entry.js" defer></script>
+  <script src="inspection-ui.js" defer></script>
+  <script src="inspection-polish.js" defer></script>
 
   <!-- Layout-Ergänzungen -->
   <script src="cases-layout.js" defer></script>
@@ -44,7 +53,7 @@
 <body>
   <header class="topbar">
     <div class="container topbar-inner">
-      <a class="brand" href="#demo-top">
+      <a class="brand" href="../website/index.html">
   Clara<span>SR.</span>
 </a>
 
@@ -53,7 +62,7 @@
       </span>
 
       <div class="topbar-actions">
-        <a class="back-link" href="#demo-top">
+        <a class="back-link" href="../website/index.html">
           ← Zur Website
         </a>
 
@@ -1088,5 +1097,6 @@
     </footer>
 
   </main>
+  <script src="handbook.js" defer></script>
 </body>
 </html>

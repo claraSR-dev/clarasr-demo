@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ClaraSR – Liefer- und Rechnungsprüfung sowie Nachverfolgung von Reklamationen, Gutschriften und Ausgleich.">
+  <title>ClaraSR — Lieferabweichungen erkennen und klären</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a href="#top" class="home-skip" data-home-text="skip">Zum Inhalt</a>
+
+  <header class="site-header">
+    <div class="site-shell header-inner">
+      <a class="brand" href="#top" aria-label="ClaraSR">
+        <span class="brand-name">Clara<span>SR.</span></span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Hauptnavigation" data-home-aria="navigation">
+        <a href="#product" data-home-text="navProduct">Ablauf</a>
+        <a href="#industries" data-home-text="navIndustries">Branchen</a>
+        <a href="#research" data-home-text="navResearch">Projektstand</a>
+      </nav>
+
+      <div class="header-actions">
+        <label class="home-language">
+          <span class="home-visually-hidden" data-home-text="language">Sprache</span>
+          <select id="home-language" aria-label="Sprache" data-home-aria="language">
+            <option value="de">DE</option>
+            <option value="en">EN</option>
+            <option value="it">IT</option>
+            <option value="fr">FR</option>
+          </select>
+        </label>
+
+        <a class="button button-primary header-demo" href="../demo/index.html">
+          <span data-home-text="demo">Demo testen</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <button
+        class="mobile-toggle"
+        type="button"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        aria-label="Navigation öffnen"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav
+      id="mobile-menu"
+      class="mobile-menu"
+      hidden
+      aria-label="Hauptnavigation"
+      data-home-aria="navigation"
+    >
+      <a href="#product" data-home-text="navProduct">Ablauf</a>
+      <a href="#industries" data-home-text="navIndustries">Branchen</a>
+      <a href="#research" data-home-text="navResearch">Projektstand</a>
+      <a href="../demo/index.html" data-home-text="demo">Demo testen</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="mountain-background" aria-hidden="true"></div>
+
+      <div class="site-shell hero-content">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">
+              <span class="home-globe" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="9"/>
+    <ellipse cx="12" cy="12" rx="4" ry="9"/>
+    <path d="M3 12h18"/>
+  </svg>
+</span>
+              <span data-home-text="eyebrow">
+                FÜR EINKAUF UND BUCHHALTUNG IN DER SCHWEIZ
+              </span>
+            </div>
+
+            <h1>
+              <span class="home-hero-lead" data-home-text="heroTitle">
+                Abweichungen erkennen.
+              </span>
+              <span data-home-text="heroAccent">Klärung verfolgen.</span>
+            </h1>
+
+            <p class="hero-description" data-home-text="heroIntro">
+              Bestellungen, erfasste Wareneingänge und Rechnungen vergleichen.
+              Fehlmengen, dokumentierte Schäden und Preisabweichungen prüfen –
+              und den Vorgang bis zu Gutschrift und Ausgleich nachvollziehen.
+            </p>
+
+            <div class="hero-actions">
+              <a href="../demo/index.html" class="button button-primary hero-demo">
+                <span data-home-text="demo">Demo testen</span>
+                <span aria-hidden="true">→</span>
+              </a>
+
+              <a href="#product" class="home-secondary-link" data-home-text="how">
+                So funktioniert der Ablauf
+              </a>
+            </div>
+
+            <p class="home-concept-note" data-home-text="demoNote">
+              Interaktive Konzeptdemo mit fiktiven Daten.
+              Kein Kundenlogin und kein Upload echter Dokumente.
+            </p>
+
+            <div class="feature-strip" aria-label="Produktablauf" data-home-aria="benefits">
+              <div class="mini-feature">
+                <span class="mini-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="m12 3 8 4.5-8 4.5-8-4.5L12 3Z"/>
+                    <path d="m4 12 8 4.5 8-4.5"/>
+                    <path d="m4 16.5 8 4.5 8-4.5"/>
+                  </svg>
+                </span>
+                <span data-home-text="benefit1">Abweichungen erkennen</span>
+              </div>
+
+              <span class="feature-divider" aria-hidden="true"></span>
+
+              <div class="mini-feature">
+                <span class="mini-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>
+<path d="M14 2v6h6M8 12h8M8 16h6"/>
+                  </svg>
+                </span>
+                <span data-home-text="benefit2">Klärung dokumentieren</span>
+              </div>
+
+              <span class="feature-divider" aria-hidden="true"></span>
+
+              <div class="mini-feature">
+                <span class="mini-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 2 20 6v6c0 5-3.3 8-8 10-4.7-2-8-5-8-10V6l8-4Z"/>
+                    <path d="m8 12 3 3 5-6"/>
+                  </svg>
+                </span>
+                <span data-home-text="benefit3">Ausgleich nachvollziehen</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-product">
+            <div
+              class="dashboard-window home-product-preview"
+              aria-label="Fiktives Produktbeispiel INV-DEMO-12000"
+              data-home-aria="preview"
+            >
+              <aside class="dashboard-sidebar" aria-hidden="true">
+                <div class="sidebar-logo">
+                  <span class="sidebar-logo-symbol">⬡</span>
+                </div>
+
+                <div class="sidebar-menu">
+                  <div class="sidebar-item selected">
+                    <span class="sidebar-glyph">▱</span>
+                    <span data-home-text="sideReview">Prüfung</span>
+                  </div>
+                  <div class="sidebar-item">
+                    <span class="sidebar-glyph">▣</span>
+                    <span data-home-text="sideCases">Fälle</span>
+                  </div>
+                  <div class="sidebar-item">
+                    <span class="sidebar-glyph">≡</span>
+                    <span data-home-text="sideCredits">Gutschriften</span>
+                  </div>
+                  <div class="sidebar-item">
+                    <span class="sidebar-glyph">✓</span>
+                    <span data-home-text="sideFile">Fallakte</span>
+                  </div>
+                </div>
+
+                <div class="sidebar-bottom">
+                  <span class="home-preview-company">Alpine Parts AG</span>
+                  <small data-home-text="fictionalCompany">Fiktives Unternehmen</small>
+                </div>
+              </aside>
+
+              <div class="dashboard-main home-preview-main">
+                <div class="dashboard-heading">
+                  <div>
+                    <h2 data-home-text="previewTitle">Liefer- & Rechnungsprüfung</h2>
+                    <p data-home-text="previewSubtitle">Fiktives Beispiel · INV-DEMO-12000</p>
+                  </div>
+                  <span class="home-preview-tag" data-home-text="sample">Beispiel</span>
+                </div>
+
+                <div class="home-preview-case">
+                  <strong>INV-DEMO-12000</strong>
+                  <span>Meccanica Italia S.r.l.</span>
+                  <p data-home-text="article">Präzisionsbuchse PB-20</p>
+                </div>
+
+                <div class="home-preview-values">
+                  <div>
+                    <span data-home-text="ordered">Bestellt</span>
+                    <strong>10’000</strong>
+                  </div>
+                  <div>
+                    <span data-home-text="received">Eingegangen</span>
+                    <strong>9’400</strong>
+                  </div>
+                  <div>
+                    <span data-home-text="missing">Fehlmenge</span>
+                    <strong>600</strong>
+                  </div>
+                </div>
+
+                <div class="home-preview-result">
+                  <span class="home-preview-warning" data-home-text="shortage">
+                    Berechnete Fehlmenge
+                  </span>
+
+                  <div>
+                    <span data-home-text="difference">Zu prüfender Differenzwert</span>
+                    <strong>CHF 12’000.00</strong>
+                  </div>
+<p data-home-text="calculation">
+  600 fehlende Stück × CHF 20.00 pro Stück
+</p>
+                  <p data-home-text="noClaim">
+                    Prüfhinweis, keine bestätigte Forderung.
+                  </p>
+                </div>
+
+                <p class="home-preview-next" data-home-text="next">
+                  Nächster Schritt: Lieferstand und Belege prüfen, anschließend
+                  die Abweichung mit dem Lieferanten klären.
+                </p>
+
+                <div class="home-preview-stages">
+                  <span class="current" data-home-text="stage1">Prüfen</span>
+                  <span data-home-text="stage2">Klären</span>
+                  <span data-home-text="stage3">Gutschrift</span>
+                  <span data-home-text="stage4">Ausgleich</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="dashboard-disclaimer" data-home-text="previewNote">
+              Vereinfachte Produktdarstellung · Fiktive Mengen, Unternehmen und Beträge
+            </p>
+          </div>
+        </div>
+
+        <div class="industry-area" id="industries">
+          <div class="industry-caption">
+            <span class="rule"></span>
+            <span data-home-text="industryCaption">
+              ZIELBRANCHEN FÜR DIE ERSTE ERPROBUNG
+            </span>
+            <span class="rule"></span>
+          </div>
+
+          <div class="industry-list">
+            <div class="industry-item">
+              <span class="industry-icon" aria-hidden="true">⚙</span>
+              <span data-home-text="industry1">Maschinenbau & Ersatzteile</span>
+            </div>
+
+            <div class="industry-item">
+              <span class="industry-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32">
+                  <path d="m16 3 10 6-10 6L6 9l10-6Z"/>
+                  <path d="M6 9v12l10 6 10-6V9"/>
+                  <path d="M16 15v12"/>
+                </svg>
+              </span>
+              <span data-home-text="industry2">Technischer Großhandel</span>
+            </div>
+
+            <div class="industry-item">
+              <span class="industry-icon medical-icon" aria-hidden="true">✚</span>
+              <span data-home-text="industry3">Medizintechnik</span>
+            </div>
+
+            <div class="industry-item">
+              <span class="industry-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32">
+                  <g transform="rotate(-45 16 16)">
+                    <rect x="5" y="11" width="22" height="10" rx="5"/>
+                    <path d="M16 11V21"/>
+                  </g>
+                </svg>
+              </span>
+              <span data-home-text="industry4">Pharma</span>
+            </div>
+
+            <div class="industry-item home-industry-more">
+              <span aria-hidden="true">+</span>
+              <span data-home-text="industryMore">Weitere Branchen geplant</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="below-hero" id="product">
+      <div class="site-shell">
+        <div class="section-label" data-home-text="approach">DER ABLAUF</div>
+
+        <h2 data-home-text="processTitle">
+          Von der Lieferabweichung zur dokumentierten Klärung.
+        </h2>
+
+        <p data-home-text="processIntro">
+          Die Prüfung beginnt vor einer Gutschrift: Was wurde bestellt, was ist
+          tatsächlich als eingegangen erfasst und was wurde berechnet?
+          Danach folgt die sachliche Klärung – etwa Nachlieferung, Ersatz,
+          Rechnungskorrektur oder Gutschrift.
+        </p>
+
+        <div class="workflow-row">
+          <div>
+            <strong data-home-text="step1Title">Vergleichen</strong>
+            <span data-home-text="step1Text">
+              Bestellung, Wareneingang und Rechnung gegenüberstellen;
+              mögliche Abweichungen erkennen.
+            </span>
+          </div>
+
+          <div>
+            <strong data-home-text="step2Title">Klären</strong>
+            <span data-home-text="step2Text">
+              Belege prüfen, den Bearbeitungsstand festhalten und die
+              Lieferantenklärung dokumentieren.
+            </span>
+          </div>
+
+          <div>
+            <strong data-home-text="step3Title">Gutschrift prüfen</strong>
+            <span data-home-text="step3Text">
+              Eine zugesagte Korrektur von einer ausgestellten Gutschrift
+              unterscheiden und Restbeträge verfolgen.
+            </span>
+          </div>
+
+          <div>
+            <strong data-home-text="step4Title">Ausgleich dokumentieren</strong>
+            <span data-home-text="step4Text">
+              Zuordnungen und Nachweise prüfen und das Ergebnis
+              in einer Fallakte festhalten.
+            </span>
+          </div>
+        </div>
+
+        <p class="home-process-note" data-home-text="processNote">
+          Eine Abweichung allein belegt keine Forderung. Auch eine Gutschrift
+          bestätigt noch keine Rückzahlung oder wirksame Verrechnung.
+        </p>
+      </div>
+    </section>
+
+    <section class="research-section" id="research">
+      <div class="site-shell research-grid">
+        <div>
+          <div class="section-label" data-home-text="projectLabel">PROJEKTSTAND</div>
+          <h2 data-home-text="researchTitle">
+            Ausprobieren. Verstehen. Rückmeldung geben.
+          </h2>
+        </div>
+
+        <div>
+          <p data-home-text="researchIntro">
+            ClaraSR befindet sich in der Konzept- und Erprobungsphase.
+            Die Demo zeigt den geplanten Arbeitsablauf mit fiktiven
+            Geschäftsvorgängen – vom erkannten Problem bis zur simulierten Abschlussakte.
+          </p>
+
+          <p data-home-text="researchTest">
+            Sie können Mengen und Preise verändern, eigene fiktive Prüfungen
+            anlegen, Fälle bearbeiten und zwei geführte Abläufe durchspielen.
+            Das integrierte Handbuch erklärt die Schritte.
+          </p>
+
+          <a href="../demo/index.html" class="button button-primary">
+            <span data-home-text="demo">Demo testen</span>
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <div class="research-note" data-home-text="researchNote">
+            Eingaben bleiben lokal in Ihrem Browser. Die Demo versendet keine
+            Lieferantenanfragen. Produktumfang, Integrationen und Preise
+            werden anhand des Kundenbedarfs konkretisiert.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell footer-inner">
+      <span class="brand-name">Clara<span>SR.</span></span>
+      <span data-home-text="footerProduct">
+        Lieferantenreklamationen, Gutschriften und Ausgleich
+      </span>
+      <span data-home-text="footerStatus">Konzeptdemo · Produkt in Entwicklung</span>
+    </div>
+  </footer>
+</body>
+</html>

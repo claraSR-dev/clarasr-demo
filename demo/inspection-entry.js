@@ -551,15 +551,27 @@
 
       const page = ctx.page;
 
-      page.replaceChildren(
-        el("h2", text.t("inspection")),
-        el("p", text.t("intro")),
-        el(
-          "p",
-          text.t("asOf") + ": " + data.asOf,
-          "cl-inspection-muted"
-        )
-      );
+      const resultsLabel = {
+  de: "DEMO-ERGEBNISSE",
+  en: "DEMO RESULTS",
+  it: "RISULTATI DELLA DEMO",
+  fr: "RÉSULTATS DE LA DÉMO"
+};
+
+page.replaceChildren(
+  el(
+    "span",
+    resultsLabel[text.lang()] || resultsLabel.de,
+    "results-badge cl-inspection-results-badge"
+  ),
+  el("h2", text.t("inspection"), "cl-inspection-title"),
+  el("p", text.t("intro"), "cl-inspection-intro"),
+  el(
+    "p",
+    text.t("asOf") + ": " + data.asOf,
+    "cl-inspection-muted"
+  )
+);
 
       const top = el(
         "div",

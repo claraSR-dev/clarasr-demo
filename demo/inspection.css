@@ -740,3 +740,32 @@ input[type="checkbox"] {
 .cl-roadmap-card .cl-roadmap-example {
   margin-top: 24px;
 }
+
+
+/* Einheitlicher Prüfungs-Kopfbereich v1 */
+
+#inspection-page {
+  position: relative;
+  padding-top: 64px;
+}
+
+#inspection-page > .cl-inspection-results-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+
+#inspection-page > .cl-inspection-title {
+  margin: 10px 0 6px;
+  font-size: 30px;
+  font-weight: 730;
+  letter-spacing: -.055em;
+}
+
+#inspection-page > .cl-inspection-intro {
+  margin: 8px 0 0;
+  color: var(--muted, #6c8593);
+  font-size: 13px;
+  line-height: 1.65;
+}
